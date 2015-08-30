@@ -196,6 +196,7 @@ if ( !class_exists( 'imcron_controller' ) ) {
 		}
 
 		public function add_styles( ) {
+			wp_register_style( 'imcron_styles', WP_CONTENT_URL . '/plugins/improved-cron/css/styles.css' );
 			wp_enqueue_style( 'imcron_styles' );
 		}
 	}
@@ -209,7 +210,6 @@ if ( class_exists( 'imcron_controller' ) ) {
 	register_activation_hook( __FILE__, array( $imcron_controller, 'activation' ) );
 	register_deactivation_hook( __FILE__, array( $imcron_controller, 'deactivation' ) );
 
-	wp_register_style ( 'imcron_styles', WP_CONTENT_URL . '/plugins/improved-cron/css/styles.css' );
 
 	// Actions
 	add_action( 'admin_menu', array( $imcron_controller, 'add_menus' ) );
