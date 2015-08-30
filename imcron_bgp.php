@@ -109,19 +109,6 @@ if ( !class_exists( 'imcron_bgp' ) ) {
 			file_get_contents( $url );
 		}
 
-		private function save_file( $url, $bgp_folder ) {
-
-			$ch = curl_init();
-			curl_setopt( $ch, CURLOPT_URL, $url );
-			curl_setopt( $ch, CURLOPT_TIMEOUT, 1);
-			curl_setopt( $ch, CURLOPT_FRESH_CONNECT, true);
-			$contents = file_get_contents( $url );
-			curl_close($ch);
-			$out_file = $bgp_folder . '/' . date( 'Ymd-His' ) . '.headlines';
-			$fh = fopen( $out_file, 'w' );
-			fwrite( $fh, $contents );
-			fclose( $fh );
-		}
 	}
 }
 
