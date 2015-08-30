@@ -106,7 +106,7 @@ if ( !class_exists( 'imcron_bgp' ) ) {
 		}
 
 		private function ping_site( $url ) {
-			file_get_contents( $url );
+			wp_remote_get( $url );
 		}
 
 	}
