@@ -20,7 +20,7 @@ if ( !class_exists( 'imcron_bgp' ) ) {
 
 			extract( $this->get_cfg( ) );
 			$lockfile = $bgp_folder . '/' . time() . '.lck';
-			
+
 			$this->write_log( "Started", $logfile );
 
 			// Check that a process isn't already running

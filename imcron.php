@@ -71,7 +71,7 @@ if ( !class_exists( 'imcron_controller' ) ) {
 				}
 				closedir( $handle );
 			}
-			
+
 			if ( $run || !$lock_exists ) {
 				if ( $this->logging ) error_log( 'Starting BGP' );
 				$this->bgp->run( );
@@ -163,7 +163,7 @@ if ( !class_exists( 'imcron_controller' ) ) {
 		}
 
 		public function get_bgp_status( ) {
-			
+
 			if ( $this->logging ) error_log( 'Get BGP Status' );
 			extract( $this->settings );
 			$alive = false;
@@ -180,7 +180,7 @@ if ( !class_exists( 'imcron_controller' ) ) {
 						if ( $this->logging ) error_log( "last_run: $last_run" );
 						if ( empty( $last_run ) ) $last_run = $started;
 						$time_check = time( ) - $interval - 600;
-					
+
 						if ( $this->logging ) error_log( "$time_check $last_run" );
 						if ( $time_check > $last_run ) { // BGP might have died
 							unlink( $bgp_folder . '/' . $file ); // Will report died, so make sure it has

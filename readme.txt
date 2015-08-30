@@ -35,4 +35,4 @@ No screenshots available.
 = 1.2.0 =
 * Transferred from <a href='http://codecanyon.net?ref=paulswebsolutions'>Code Canyon</a>
 
-== Upgrade Notice ==  
+== Upgrade Notice ==
