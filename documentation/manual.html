@@ -1,0 +1,55 @@
+<h1>Improved Cron Documentation</h1>
+
+<h2>Purpose</h2>
+
+<p>Improved Cron is intended as a simple solution to limitations of the Wordpress Cron system.  For the average user, it is simpler to just install a plugin than attempt to set up a server level cron job.</p>
+
+<h2>How It Works</h2>
+
+<p>When you start Improved Cron, you're starting two separate components.  The first is a PHP background process that runs indefinately, takes very little resources, and 'wakes up' every 60 seconds so it can simulate a visit to your site and ensure that Wordpress Cron runs.  The second component is a WP Cron routine that runs every 10 minutes and ensures that the PHP background process is still working.</p>
+
+<h2>Installation</h2>
+
+<ol>
+<li>Open your Wordpress Admin console</li>
+<li>Navigate to 'Plugins' > 'Add New'</li>
+<li>Click 'Upload'</li>
+<li>Click the 'Browse...' button</li>
+<li>Find the Improved Cron zip file you downloaded to your computer</li>
+<li>Select it, and click 'Open'</li>
+<li>Click 'Install Now'</li>
+<li>Click the 'activate' link</li>
+</ol>
+
+<h2>Usage</h2>
+
+<h3>Finding The Management Page</h3>
+
+There are two ways to open the Improved Cron management page:
+
+<ol>
+<li>From the plugin page, you can click on the 'Manage' link in the Improved Cron plugin listing</li>
+<li>Alternatively, you can expand the 'Tools' menu and click on 'Improved Cron'</li>
+</ol>
+
+<h3>Controlling Improved Cron</h3>
+
+On the Improved Cron Management page...
+
+<p><strong>Start:</strong> Click the 'Start' button.  When the page refreshes you should see the state changed to 'Running' and the time of the next visit to your site will be indicated.</p>
+
+<p><strong>Stop:</strong> Click the 'Stop' button.  When the page refreshes you should see the state changed to 'Stopped' and the time of the next visit to your site will be blank.</p>
+
+<p><strong>Refresh:</strong> Click the 'Refresh' button.  When the page refreshes you should see the current state of the background process with all the dates and times updated.</p>
+
+<p><strong>Possible Intervals:</strong> This is a table of currently available intervals.  Wordpress does not allow intervals smaller than 60 seconds.  Plugin and Theme developers can register extra intervals as needed.</p>
+
+<p><strong>Scheduled:</strong> Currently scheduled tasks ( also referred to as 'hooks' ), how frequently each hook runs, and the next scheduled run time.  Plugin and Theme developers can register extra hooks as needed.</p>
+
+<h2>Uninstallation</h2>
+
+<p>Just deactivate the plugin.  The de-activation routine will perform a stop action before deactivation completes.</p>
+
+<h2>Contact</h2>
+
+<p>Please visit my <a href="http://cpkwebsolutions.com">website</a> to see my other work or to contact me.</p>
