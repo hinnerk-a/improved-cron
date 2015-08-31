@@ -195,11 +195,6 @@ if ( !class_exists( 'imcron_controller' ) ) {
 			}
 			return array( 'alive' => $alive, 'started' => $started, 'last_run' => $last_run );
 		}
-
-		public function add_styles( ) {
-			wp_register_style( 'imcron_styles', WP_CONTENT_URL . '/plugins/improved-cron/css/styles.css' );
-			wp_enqueue_style( 'imcron_styles' );
-		}
 	}
 }
 
@@ -215,7 +210,6 @@ if ( class_exists( 'imcron_controller' ) ) {
 	// Actions
 	add_action( 'admin_menu', array( $imcron_controller, 'add_menus' ) );
 	add_action( 'imcron_bgp', array( $imcron_controller, 'bgp_keep_alive' ) );
-	add_action( 'admin_print_styles', array( $imcron_controller, 'add_styles' ) );
 
 	// Filters
 	add_filter( 'plugin_action_links', array( $imcron_controller, 'add_plugin_link' ), 10, 2 );

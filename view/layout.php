@@ -1,7 +1,6 @@
 <div class="wrap">
   <div id='imcron_header'>
-  	<div id="icon-imcron" class="icon32"><br></div>
-    <h2>Improved Cron</h2>
+    <h1>Improved Cron</h1>
   </div>
 
   <?php require_once( $inner_page ); ?>
