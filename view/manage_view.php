@@ -1,5 +1,6 @@
 <h3>Description</h3>
 <p>WP Cron doesn't work until someone visits your site.  If your job is scheduled to run at 1pm but there are no visitors until 6pm, then your job actually runs at 6pm.  Improved Cron solves this by faking a visit to your site every minute.</p>
+<p>You can change the interval, Improved Cron is faking a visit by setting another interval identifier via the filter hook 'imcron_interval'.</p>
 
 <ul>
 <li style='float:left; width: 40%'><div><h3>Status</h3><table class="widefat">
@@ -38,7 +39,7 @@
 <input type="submit" name="start_bgp" value="Start"/>
 <input type="submit" name="stop_bgp" value="Stop"/>
 <input type="submit" name="check" value="Refresh"/><br/>
-<strong>Note:</strong> If you don't see 'running' status after clicking start, please wait 1 minute and click refresh.</p>
+<strong>Note:</strong> If you don't see 'Running' status after clicking start, please wait 1 minute and click refresh.</p>
 </form>
 </div></li>
 <li style='float:left; width: 40%'><div style="margin-left: 10%"><h3>Possible Intervals</h3><table class="widefat">

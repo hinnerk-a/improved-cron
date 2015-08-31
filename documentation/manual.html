@@ -34,7 +34,7 @@ There are two ways to open the Improved Cron management page:
 
 <h3>Controlling Improved Cron</h3>
 
-On the Improved Cron Management page...
+<h4>On the Improved Cron Management page</h4>
 
 <p><strong>Start:</strong> Click the 'Start' button.  When the page refreshes you should see the state changed to 'Running' and the time of the next visit to your site will be indicated.</p>
 
@@ -45,6 +45,11 @@ On the Improved Cron Management page...
 <p><strong>Possible Intervals:</strong> This is a table of currently available intervals.  Wordpress does not allow intervals smaller than 60 seconds.  Plugin and Theme developers can register extra intervals as needed.</p>
 
 <p><strong>Scheduled:</strong> Currently scheduled tasks ( also referred to as 'hooks' ), how frequently each hook runs, and the next scheduled run time.  Plugin and Theme developers can register extra hooks as needed.</p>
+
+<h4>Change fake visit interval</h4>
+
+<p>You can change the interval, Improved Cron is faking a visit by setting another interval identifier via the filter hook 'imcron_interval'.</p>
+
 
 <h2>Uninstallation</h2>
 
