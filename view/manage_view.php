@@ -15,6 +15,11 @@
 <td><?php echo date_i18n( $dformat, strtotime( current_time('mysql') ), true ); ?></td>
 </tr>
 <tr>
+<td><strong>Used Interval:</strong></td>
+<?php $used_interval = apply_filters( 'imcron_interval', 'every_minute' ); ?>
+<td><?php printf( '%s (%s)', $schedule_details[$used_interval]['display'], $used_interval ); ?></td>
+</tr>
+<tr>
 <td><strong>Started:</strong></td>
 <td><?php echo ( !empty( $status['started'] ) ) ? date_i18n( $dformat, $status['started'] + ( get_option( 'gmt_offset' ) * 3600 ) ) : ''; ?></td>
 </tr>
