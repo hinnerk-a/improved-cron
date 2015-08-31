@@ -80,7 +80,7 @@ if ( !class_exists( 'imcron_controller' ) ) {
 
 		public function start_bgp( ) {
 			if ( $this->logging ) error_log( 'Scheduling BGP Start' );
-			wp_schedule_event( time( ) -1, 'ten_minutes', 'imcron_bgp' );
+			wp_schedule_event( time( ) -1, 'one_minute', 'imcron_bgp' );
 		}
 
 		public function stop_bgp( ) {
@@ -103,7 +103,7 @@ if ( !class_exists( 'imcron_controller' ) ) {
 		}
 
 		public function add_cron_schedules( $schedules ) {
-			$schedules['ten_minutes'] = array( 'interval' => '600', 'display' => '10 mins' );
+			$schedules['one_minute'] = array( 'interval' => '60', 'display' => '1 min' );
 			return $schedules;
 		}
 
