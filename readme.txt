@@ -24,11 +24,39 @@ Note: This is the exact same plugin that was previously sold on Code Canyon.
 
 == Frequently Asked Questions ==
 
-No FAQs yet.
+= What is a “fake visit”? =
+WordPress Cron only runs when someone visits your site. A fake visit causes a page to load without needing a real person to visit.
+For the more technically minded, the plugin spawns a PHP sub-process that loops indefinitely and loads wp-cron.php each minute. This causes WP Cron to be triggered in exactly the same way it would if a real user was visiting your site.
+
+= Can the interval be adjusted? =
+Yes. However, you’d need to modify the plugin code. The reason is that WordPress won’t allow cron jobs to run more frequently than 1 minute, and running every minute has very little downside.
+If you really must tinker with it, open main plugin file (imcron.php) and change ‘interval’ => 60. You’ll need to stop and re-start on the settings page to get the new interval to take effect.
+
+= Will it list every scheduled event in the admin, including those scheduled by plugins or themes? =
+Yes, it includes all events scheduled within WordPress at the time.
+
+= What is PHP requirement of using this? Is it PHP exec() enable? =
+If your WP-Cron jobs work when you have a visitor, then this plugin should work for you. The plugin uses exactly the same code as WP Cron does, just in a different way, and with safeguards, a keep alive, logging available, etc.
+The ‘background process’ is really a HTTP request that loops indefinitely until you press stop in the panel. I also use a lock file system to prevent multiple ‘processes’ starting, as well as provide a failsafe method of killing the process (if the lock file is gone when it wakes up, then it dies).
+
+= Doesn’t running a background process consume extra memory? =
+Yes, but only a small, fixed, amount of memory. During testing, I left the plugin running for a couple of weeks while logging memory usage each minute. There was no growth in memory usage (Iow, no memory leak) and a pretty small memory footprint (under 250KB).
+
+= Do you know if the “fake” visits will be detected by WP Stats/Google Analytics/etc? =
+The plugin calls wp-cron.php directly, so I doubt any stats programs will record these visits.
+
+= Does this allow you to create cron jobs, or does it just help them run? =
+It just helps them run when you expect them to (+/- 1 minute). Normally, WP Cron requires a visitor so the actual run time of a cron job can be hours after you scheduled it to run.
+
+= Will this works with WordPress MultiSite? And if so, can I turn certain double crons (like plugin update checks) off? =
+I haven’t done any testing with WordPress multisite yet. I created it for a project I was working on and spun it off into a standalone plugin. Unfortunately, I haven’t made anywhere near enough sales to justify much extra development effort at this stage, however I’m open to sponsorship to test and/or extend it.
+
+= I received the following error: PHP Warning: file_get_contents(1320997139.lck) [function.file-get-contents]: failed to open stream: No such file or directory =
+Your web user needs permission to create files in ‘../plugins/improved-cron/bgp’. It uses the files to ensure only one copy of the background job runs at any one time.
 
 == Screenshots ==
 
-No screenshots available.
+1. Interface of Improved Cron
 
 == Changelog ==
 
