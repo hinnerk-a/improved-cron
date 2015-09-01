@@ -1,10 +1,10 @@
 <?php
 /*
 Plugin Name: Improved Cron
-Plugin URI: http://cpkwebsolutions.com
+Plugin URI: https://wordpress.org/plugins/improved-cron/
 Description: WP Cron requires a user to visit the site to trigger your job.  With Improved Cron, your WP Cron jobs will run when you want them to.
 Version: 1.2
-Author: CPK Web Solutions
+Author: CPK Web Solutions + Hinnerk Altenburg
 Author URI: http://cpkwebsolutions.com/
 */
 
