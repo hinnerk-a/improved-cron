@@ -55,8 +55,7 @@
 <?php
 	$html = '';
 	foreach( $schedule_details as $real_name => $row ) {
-		extract( $row );
-		$html .= "<tr><td>$display</td><td>$real_name</td><td>$interval</td></tr>";
+		$html .= sprintf( '<tr><td>%s</td><td>%s</td><td>%s</td></tr>' , $row['display'], $real_name, $row['interval'] );
 	}
 	echo $html;
 ?>
