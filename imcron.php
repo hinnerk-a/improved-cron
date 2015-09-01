@@ -50,7 +50,7 @@ if ( !class_exists( 'imcron_controller' ) ) {
 						$lock_exists = true;
 						$t = file_get_contents( $bgp_folder . '/' . $file );
 						$time_check = time( ) - $interval - 600;
-						if ( $this->logging ) error_log( "$time_check > $t" );
+						if ( $this->logging ) error_log( "time_check $time_check > file_contents $t" );
 						if ( $time_check > $t ) { // BGP might have died, so restart
 
 							unlink( $bgp_folder . '/' . $file ); // Currently running process will end next time it wakes up
@@ -172,7 +172,7 @@ if ( !class_exists( 'imcron_controller' ) ) {
 						if ( empty( $last_run ) ) $last_run = $started;
 						$time_check = time( ) - $interval - 600;
 
-						if ( $this->logging ) error_log( "$time_check $last_run" );
+						if ( $this->logging ) error_log( "time_check: $time_check, last_run: $last_run" );
 						if ( $time_check > $last_run ) { // BGP might have died
 							unlink( $bgp_folder . '/' . $file ); // Will report died, so make sure it has
 						} else {

@@ -124,7 +124,7 @@ if ( !class_exists( 'imcron_bgp' ) ) {
 				}
 				fclose( $fh );
 			}
-			if ( $this->error_logging ) error_log( var_export( file_exists( $logfile ), TRUE ) );
+			if ( $this->error_logging ) error_log( 'logfile exists: ' . var_export( file_exists( $logfile ), TRUE ) );
 		}
 
 		private function ping_site( $url ) {
