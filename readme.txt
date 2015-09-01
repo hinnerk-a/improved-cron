@@ -16,6 +16,8 @@ This plugin will visit your site every minute and thereby ensure that your cron 
 
 Note: This is the exact same plugin that was previously sold on Code Canyon.
 
+Contributions are welcome: https://github.com/hinnerk-a/improved-cron
+
 == Installation ==
 
 1. Either use the built-in plugin installer, or download the zip and extract to your 'wp-content/plugins' folder.
