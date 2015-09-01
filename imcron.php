@@ -10,6 +10,8 @@ Author URI: http://cpkwebsolutions.com/
 
 // Load classes/functions
 
+! defined( 'ABSPATH' ) and exit;
+
 require_once( 'imcron_bgp.php' );
 require_once( 'view/view.php' );
 

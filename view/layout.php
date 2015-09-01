@@ -1,3 +1,4 @@
+<?php ! defined( 'ABSPATH' ) and exit; ?>
 <div class="wrap">
   <div id='imcron_header'>
     <h1>Improved Cron</h1>

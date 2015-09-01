@@ -1,3 +1,4 @@
+<?php ! defined( 'ABSPATH' ) and exit; ?>
 <h3>Description</h3>
 <p>WP Cron doesn't work until someone visits your site.  If your job is scheduled to run at 1pm but there are no visitors until 6pm, then your job actually runs at 6pm.  Improved Cron solves this by faking a visit to your site every minute.</p>
 <p>You can change the interval, Improved Cron is faking a visit by setting another interval identifier via the filter hook 'imcron_interval_id'.</p>

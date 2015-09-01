@@ -1,4 +1,5 @@
 <?php
+! defined( 'ABSPATH' ) and exit;
 
 class imcron_view {
 

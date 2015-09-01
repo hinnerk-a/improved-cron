@@ -1,5 +1,7 @@
 <?php
 
+! defined( 'ABSPATH' ) and exit;
+
 if ( !class_exists( 'imcron_bgp' ) ) {
 	class imcron_bgp {
 
