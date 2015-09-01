@@ -35,7 +35,7 @@ No screenshots available.
 = 1.3.0 =
 * Hinnerk Altenburg now contributing
 * Cleanup and small fixes to run with WordPress 4.3
-* New filter hook 'imcron_interval'
+* New filter hook 'imcron_interval_id'
 
 = 1.2.0 =
 * Transferred from Code Canyon

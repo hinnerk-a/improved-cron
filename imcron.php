@@ -80,7 +80,7 @@ if ( !class_exists( 'imcron_controller' ) ) {
 
 		public function start_bgp( ) {
 			if ( $this->logging ) error_log( 'Scheduling BGP Start' );
-			$interval = apply_filters( 'imcron_interval', 'every_minute' );
+			$interval = apply_filters( 'imcron_interval_id', 'every_minute' );
 			wp_schedule_event( time( ) -1, $interval, 'imcron_bgp' );
 		}
 
