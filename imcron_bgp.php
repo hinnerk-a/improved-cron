@@ -3,13 +3,11 @@
 if ( !class_exists( 'imcron_bgp' ) ) {
 	class imcron_bgp {
 
-		private $cfg_file;
 		private $logging = FALSE;
 		private $error_logging = FALSE;
 
 		public function __construct( $error_logging = FALSE ) {
 			$this->error_logging = $error_logging;
-			$this->cfg_file = dirname( __FILE__ ) . '/bgp.cfg';
 		}
 
 		public function __destruct( ) {
@@ -18,7 +16,11 @@ if ( !class_exists( 'imcron_bgp' ) ) {
 
 		public function run( $once = false ) {
 
-			extract( $this->get_cfg( ) );
+			$interval     = $this->get_setting( 'interval' );
+			$site_address = $this->get_setting( 'site_address' );
+			$bgp_folder   = $this->get_setting( 'bgp_folder' );
+			$logfile      = $this->get_setting( 'logfile' );
+
 			$lockfile = $bgp_folder . '/' . time() . '.lck';
 
 			$this->write_log( "Started", $logfile );
@@ -45,7 +47,6 @@ if ( !class_exists( 'imcron_bgp' ) ) {
 						if ( $this->error_logging ) error_log( "File '$lockfile' no longer exists!" );
 					}
 
-					extract( $this->get_cfg( ) ); // Overwrite by default
 					if ( !$interval ) { // Interval = 0: background process should die
 						if ( file_exists( $lockfile ) ) {
 							if ( $this->error_logging ) error_log( "Interval = 0, Deleting $lockfile" );
@@ -78,13 +79,32 @@ if ( !class_exists( 'imcron_bgp' ) ) {
 			return $result;
 		}
 
-		private function get_cfg( ) {
-			$contents = explode( ',', file_get_contents( $this->cfg_file ) );
-			$cfg['interval'] = $contents[0];
-			$cfg['site_address'] = $contents[1];
-			$cfg['bgp_folder'] = $contents[2];
-			$cfg['logfile'] = $cfg['bgp_folder'] . '/' . $contents[3];
-			return $cfg;
+		public function set_settings() {
+			update_option( 'imcron_settings', $this->get_settings() );
+		}
+
+		public function get_setting( $key ) {
+			$settings = $this->get_settings();
+			if (!isset($settings[$key])) return false;
+			return $settings[$key];
+		}
+
+		private function get_settings( ) {
+			$schedules = wp_get_schedules();
+			$interval_id = apply_filters( 'imcron_interval_id', 'every_minute' );
+			$settings_defaults = array( // Defaults
+				'site_address' => home_url() . '/wp-cron.php',
+				'interval_id' => $interval_id,
+				'interval' => $schedules[$interval_id]['interval'],
+				'bgp_folder' => dirname( __FILE__ ) . '/bgp',
+				'logfile' => 'bgp.log'
+			);
+
+            $settings = wp_parse_args(
+                get_option( 'imcron_settings', array() ),
+                $settings_defaults
+            );
+			return $settings;
 		}
 
 		private function write_log( $message, $logfile, $lockfile = false, $details = true, $overwrite = false ) {

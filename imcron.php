@@ -19,37 +19,25 @@ if ( !class_exists( 'imcron_controller' ) ) {
 
 		private $view;
 		private $bgp;
-		private $settings;
 		private $logging = FALSE;
 
 		public function __construct( ) {
 			$this->bgp = new imcron_bgp( $this->logging );
 			$this->view = new imcron_view( );
 
-			$settings = array( // Defaults
-				'site_address' => home_url() . '/wp-cron.php',
-				'interval' => 60,
-				'bgp_folder' => dirname( __FILE__ ) . '/bgp',
-				'logfile' => 'bgp.log'
-			);
-
-			$this->save_settings( $settings );
-		}
-
-		public function save_settings( $settings ) {
-			$this->settings = $settings;
-			$cfg_file_name = dirname( __FILE__ ) . '/bgp.cfg';
-			$new = array( $settings['interval'], $settings['site_address'], $settings['bgp_folder'], $settings	['logfile'] );
-			$new = implode( ',', $new );
-			if ( $handle = fopen( $cfg_file_name, 'w' ) ) {
-				fwrite( $handle, $new );
-				fclose( $handle );
+			// delete old config file < v1.3
+			if ( empty( get_option( 'imcron_settings' ) ) && file_exists( dirname( __FILE__ ) . '/bgp.cfg' ) ) {
+				unlink( dirname( __FILE__ ) . '/bgp.cfg' );
+				$this->bgp->set_settings();
 			}
 		}
 
 		public function bgp_keep_alive( ) {
 			if ( $this->logging ) error_log( 'Starting BGP Keep Alive Routine' );
-			extract( $this->settings );
+
+			$interval     = $this->bgp->get_setting( 'interval' );
+			$bgp_folder   = $this->bgp->get_setting( 'bgp_folder' );
+
 			$run = false;
 			$lock_exists = false;
 			if ( $handle = opendir( $bgp_folder ) ) {
@@ -80,8 +68,7 @@ if ( !class_exists( 'imcron_controller' ) ) {
 
 		public function start_bgp( ) {
 			if ( $this->logging ) error_log( 'Scheduling BGP Start' );
-			$interval = apply_filters( 'imcron_interval_id', 'every_minute' );
-			wp_schedule_event( time( ) -1, $interval, 'imcron_bgp' );
+			wp_schedule_event( time( ) -1, $this->bgp->get_setting( 'interval_id' ), 'imcron_bgp' );
 		}
 
 		public function stop_bgp( ) {
@@ -152,7 +139,7 @@ if ( !class_exists( 'imcron_controller' ) ) {
 			foreach( $cron_array as $timestamp => $hook_array ) {
 				foreach( $hook_array as $hook_name => $hook_details ) {
 					foreach( $hook_details as $hash => $detail ) {
-						extract( $detail );
+						$schedule = $detail['schedule'];
 						$i18n_date = date_i18n( $dformat, $timestamp + ( get_option( 'gmt_offset' ) * 3600 ) );
 						$schedule = $schedule_details[$schedule]['display'];
 						$rows[] = array( $hook_name, $schedule, $i18n_date );
@@ -166,7 +153,8 @@ if ( !class_exists( 'imcron_controller' ) ) {
 		public function get_bgp_status( ) {
 
 			if ( $this->logging ) error_log( 'Get BGP Status' );
-			extract( $this->settings );
+			$bgp_folder = $this->bgp->get_setting( 'bgp_folder' );
+			$interval = $this->bgp->get_setting( 'interval' );
 			$alive = false;
 			$started = '';
 			$last_run = '';
