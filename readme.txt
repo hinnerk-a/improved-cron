@@ -4,7 +4,7 @@ Donate link: http://cpkwebsolutions.com/donate
 Tags: cron, ping, scheduled, jobs, view, wp_cron, task
 Requires at least: 3.3
 Tested up to: 4.3
-Stable tag: 1.2.0
+Stable tag: 1.3.0
 
 Keep WP-Cron running every minute for scheduled tasks without actually using Cron.
 
@@ -78,8 +78,10 @@ Your web user needs permission to create files in ‘../plugins/improved-cron/bg
 
 = 1.3.0 =
 * Hinnerk Altenburg now contributing
-* Cleanup and small fixes to run with WordPress 4.3
+* Cleanup and smaller fixes
+* Security fixes
 * New filter hook 'imcron_interval_id'
+* Updates docs
 
 = 1.2.0 =
 * Transferred from Code Canyon
