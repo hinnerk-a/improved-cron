@@ -48,7 +48,7 @@ if ( !class_exists( 'imcron_controller' ) ) {
 
 						if ( $this->logging ) error_log( "Found $file" );
 						$lock_exists = true;
-						$t = file_get_contents( $file );
+						$t = file_get_contents( $bgp_folder . '/' . $file );
 						$time_check = time( ) - $interval - 600;
 						if ( $this->logging ) error_log( "$time_check > $t" );
 						if ( $time_check > $t ) { // BGP might have died, so restart
