@@ -30,7 +30,21 @@ For the more technically minded, the plugin spawns a PHP sub-process that loops 
 
 = Can the interval be adjusted? =
 Yes. However, you’d need to modify the plugin code. The reason is that WordPress won’t allow cron jobs to run more frequently than 1 minute, and running every minute has very little downside.
-If you really must tinker with it, open main plugin file (imcron.php) and change ‘interval’ => 60. You’ll need to stop and re-start on the settings page to get the new interval to take effect.
+If you really must tinker with it, hook a filter into 'imcron_interval_id' like this (change '123' to your desired interval time):
+
+    add_filter( 'cron_schedules', 'add_my_own_interval' );
+    function add_my_own_interval() {
+        $seconds = 123;
+        $interval['my_own_interval'] = array('interval' => $seconds, 'display' => sprintf( '%d seconds', $seconds ) );
+        return $interval;
+    }
+
+    add_filter( 'imcron_interval_id', 'set_imcron_interval' );
+    function set_imcron_interval() {
+        return 'my_own_interval';
+    }
+
+You’ll need to stop and re-start on the settings page to get the new interval to take effect.
 
 = Will it list every scheduled event in the admin, including those scheduled by plugins or themes? =
 Yes, it includes all events scheduled within WordPress at the time.
