@@ -26,7 +26,7 @@
 </tr>
 <tr>
 <td><strong>Next 'Fake' Visit:</strong></td>
-<td><?php echo ( !empty( $status['last_run'] ) ) ? date_i18n( $dformat, $status['last_run'] + 60 + ( get_option( 'gmt_offset' ) * 3600 ) ) : ''; ?></td>
+<td><?php echo ( !empty( $status['last_run'] ) ) ? date_i18n( $dformat, $status['last_run'] + $interval + ( get_option( 'gmt_offset' ) * 3600 ) ) : ''; ?></td>
 </tr>
 <tr>
 <td><strong>State:</strong></td>
@@ -39,7 +39,7 @@
 <input type="submit" name="start_bgp" value="Start"/>
 <input type="submit" name="stop_bgp" value="Stop"/>
 <input type="submit" name="check" value="Refresh"/><br/>
-<strong>Note:</strong> If you don't see 'Running' status after clicking start, please wait 1 minute and click refresh.</p>
+<strong>Note:</strong> If you don't see 'Running' status after clicking start, please wait <?php echo $interval; ?> seconds and click refresh.</p>
 </form>
 </div></li>
 <li style='float:left; width: 40%'><div style="margin-left: 10%"><h3>Possible Intervals</h3><table class="widefat">

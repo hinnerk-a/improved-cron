@@ -147,7 +147,7 @@ if ( !class_exists( 'imcron_controller' ) ) {
 				}
 			}
 			$status = $this->get_bgp_status( );
-			$this->view->page( 'manage', array( 'hook_list' => $rows, 'schedule_details' => $schedule_details, 'status' => $status, 'dformat' => $dformat, 'imcron_nonce' => $imcron_nonce ) );
+			$this->view->page( 'manage', array( 'hook_list' => $rows, 'schedule_details' => $schedule_details, 'status' => $status, 'dformat' => $dformat, 'imcron_nonce' => $imcron_nonce, 'interval' => $this->bgp->get_setting('interval') ) );
 		}
 
 		public function get_bgp_status( ) {
