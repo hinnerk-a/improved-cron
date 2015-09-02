@@ -68,9 +68,6 @@ It just helps them run when you expect them to (+/- 1 minute). Normally, WP Cron
 = Will this works with WordPress MultiSite? And if so, can I turn certain double crons (like plugin update checks) off? =
 I haven’t done any testing with WordPress multisite yet. I created it for a project I was working on and spun it off into a standalone plugin. Unfortunately, I haven’t made anywhere near enough sales to justify much extra development effort at this stage, however I’m open to sponsorship to test and/or extend it.
 
-= I received the following error: PHP Warning: file_get_contents(1320997139.lck) [function.file-get-contents]: failed to open stream: No such file or directory =
-Your web user needs permission to create files in ‘../plugins/improved-cron/bgp’. It uses the files to ensure only one copy of the background job runs at any one time.
-
 == Screenshots ==
 
 1. Interface of Improved Cron
