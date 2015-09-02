@@ -28,7 +28,8 @@ if ( !class_exists( 'imcron_controller' ) ) {
 			$this->view = new imcron_view( );
 
 			// delete old config file < v1.3
-			if ( empty( get_option( 'imcron_settings' ) ) && file_exists( dirname( __FILE__ ) . '/bgp.cfg' ) ) {
+			$settings = get_option( 'imcron_settings', array() );
+			if ( empty( $settings ) && file_exists( dirname( __FILE__ ) . '/bgp.cfg' ) ) {
 				unlink( dirname( __FILE__ ) . '/bgp.cfg' );
 				$this->bgp->set_settings();
 			}
