@@ -3,8 +3,8 @@ Contributors: cpkwebsolutions, hinnerk
 Donate link: http://cpkwebsolutions.com/donate
 Tags: cron, ping, scheduled, jobs, view, wp_cron, task
 Requires at least: 3.3
-Tested up to: 4.3
-Stable tag: 1.3.2
+Tested up to: 4.3.1
+Stable tag: 1.3.3
 License: GPLv2 or later
 
 Keep WP-Cron running every minute for scheduled tasks without actually using Cron.
@@ -73,6 +73,9 @@ I haven’t done any testing with WordPress multisite yet. I created it for a pr
 1. Interface of Improved Cron
 
 == Changelog ==
+
+= 1.3.3 =
+* Returning actual bgp interval in settings makes possible to be changed, dynamically.
 
 = 1.3.2 =
 * Fix stable tag
