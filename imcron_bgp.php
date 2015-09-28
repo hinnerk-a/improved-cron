@@ -97,7 +97,6 @@ if ( !class_exists( 'imcron_bgp' ) ) {
 			$settings_defaults = array( // Defaults
 				'site_address' => home_url() . '/wp-cron.php',
 				'interval_id' => $interval_id,
-				'interval' => $schedules[$interval_id]['interval'],
 				'bgp_folder' => dirname( __FILE__ ) . '/bgp',
 				'logfile' => 'bgp.log'
 			);
@@ -106,6 +105,10 @@ if ( !class_exists( 'imcron_bgp' ) ) {
                 get_option( 'imcron_settings', array() ),
                 $settings_defaults
             );
+            if ( ! is_dir( $settings['bgp_folder'] ) ) {
+            	$settings['bgp_folder'] = dirname( __FILE__ ) . '/bgp';
+            }
+			$settings['interval'] = $schedules[$interval_id]['interval']; // in case of dynamically changing intervals
 			return $settings;
 		}
 
